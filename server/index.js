@@ -7,7 +7,6 @@ import router from "./router/index.js";
 import { Server as SocketServer } from "socket.io";
 import http from "http";
 import morgan from "morgan";
-import socket from "../frontend/src/helpers/socket.js";
 
 connectDB();
 
