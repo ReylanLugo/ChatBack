@@ -15,12 +15,14 @@ const app = express();
 const server = http.createServer(app);
 const io = new SocketServer(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "*",
     methods: ["GET", "POST"],
   },
 });
 const port = process.env.PORT || 5000;
-app.use(cors());
+app.use(cors({
+  origin: "*",
+}));
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

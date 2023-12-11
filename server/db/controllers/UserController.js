@@ -79,3 +79,12 @@ export const UpdateUser = async (req, res) => {
     res.json({ result: "No user found" });
   }
 };
+
+export const checkUser = async (req, res) => {
+  const user = await User.findOne({ username: req.body.username });
+  if (user) {
+    user.password === req.body.password && res.json({ result: user.username });
+  } else {
+    res.json({ result: false });
+  }
+}

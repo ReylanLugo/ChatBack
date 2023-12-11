@@ -1,5 +1,5 @@
 import express from "express";
-import { Login, NewUser, UpdateUser } from "../db/controllers/UserController.js";
+import { Login, NewUser, UpdateUser, checkUser } from "../db/controllers/UserController.js";
 import { getChats, NewChat, registerintoChat, removeUserChats, getUsersInChat } from "../db/controllers/ChatController.js";
 import { getMessages } from "../db/controllers/MessageController.js";
 
@@ -8,6 +8,7 @@ const router = express.Router();
 router.post("/user",NewUser);
 router.put("/user", UpdateUser);
 router.post("/login",Login);
+router.post('/checkUser', checkUser)
 
 router.post("/user/chats", registerintoChat);
 router.put("/user/chats", removeUserChats);
