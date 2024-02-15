@@ -17,8 +17,10 @@ export const NewUser = async (req, res) => {
   }
   const newUser = new User({
     username: req.body.username,
-    avatar: "https://unavatar.io/" + req.body.username,
     password: req.body.password,
+    avatar: req.body.avatar,
+    email: req.body.email,
+    name: req.body.name,
   });
   const savedUser = await newUser.save();
   res.json({
@@ -87,4 +89,14 @@ export const checkUser = async (req, res) => {
   } else {
     res.json({ result: false });
   }
+}
+
+
+export const getUsersData = async (req, res) => {
+  const usersData = [];
+  for (const user of req.body) {
+    const userData = await User.findOne({ username: user }, "username avatar");
+    usersData.push(userData);
+  }
+  res.json(usersData);
 }
